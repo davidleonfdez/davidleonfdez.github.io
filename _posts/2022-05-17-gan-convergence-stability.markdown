@@ -508,14 +508,14 @@ Then:
 1. Assuming that the activation functions $$a_l$$ are 1-Lipschitz. It's easy to see that some popular activation 
 functions like ReLU or LeakyReLU are Lipschitz, more specifically these examples are 1-Lipschitz as they have a max 
 gradient 1 constant after x=0.
-2. Using the property that $$|| g_1 º g_2 ||_{Lip} \leq || g_1 ||_{Lip} · || g_2 ||_{Lip} $$. The composition of two
+2. Using the property that $$|| g_1 \circ g_2 ||_{Lip} \leq || g_1 ||_{Lip} · || g_2 ||_{Lip} $$. The composition of two
 functions at most can stretch an input the product of the max stretch that every function can apply to an input; it'd 
 be an equality when the input that is most stretched by $$g_1$$ is the same as the input that is most stretched by $$g_2$$.
 
 ...the Lipschitz norm of the discriminator has an upper bound given by the product of the Lipschitz norms of the layers
 and activations:
 
-$$ ||f||_{Lip} \leq ||g_{L+1}||_{Lip} · ||a_L||_{Lip} · ||g_{L-1}||_{Lip} · ... · ||a_1||_{Lip} · ||g1||_{Lip}
+$$ ||f||_{Lip} \leq ||g_{L+1}||_{Lip} · ||a_L||_{Lip} · ||g_{L-1}||_{Lip} · ... · ||a_1||_{Lip} · ||g_1||_{Lip}
 = \prod_{l=1}^{L+1} ||g_l||_{Lip} = \prod_{l=1}^{L+1} \sigma(W^l) $$
 
 To perform spectral normalization, we just need to divide each weight matrix W by its spectral norm:
@@ -547,10 +547,20 @@ https://pytorch.org/docs/stable/_modules/torch/nn/utils/parametrizations.html#sp
 </figure>
 
 Experiments show the superiority of SN over weight normalization, weight clipping and gradient penalty, in absence of 
-complimentary techniques like batch normalization or weight decay. One could argue that the comparison against weight 
-clipping without BN is rigorous but not fair or too convenient; anyway, it's common knowledge that gradient penalty 
-tends to work better than weigth clipping + BN, so the edge of SN over GP should be enough to provide an idea of the 
-power of the first one.
+complimentary techniques like batch normalization or weight decay:
+
+<figure>
+<img src="/assets/images/SNResults.png">
+<figcaption>Figure 13: Comparison of FIDs (lower is better) on CIFAR-10 and STL-10 with different methods and 
+hyperparameters. Image source: [8]</figcaption>
+</figure>
+
+Furthermore, SN looks more robust to the hyperparameter choice ($$\alpha$$: learning rate, $$\beta_1$$: Adam 
+exponential decay rate for the first moment estimates, $$ \beta_2$$: Adam exponential decay rate for the second moment 
+estimates, $$n_{dis}$$: number of discriminator updates per generator update). One could argue that the comparison 
+against weight clipping without BN is rigorous but not fair or too convenient; anyway, it's common knowledge that 
+gradient penalty tends to work better than weigth clipping + BN, so the edge of SN over GP should be enough to provide 
+an idea of the power of the first one.
 
 An additional advantage is that SN is independent of the rank of each weight matrix, because the Lipschitz constant
 that is enforced only depends on the largest singular value and the rank is equal to the number of singular values.
