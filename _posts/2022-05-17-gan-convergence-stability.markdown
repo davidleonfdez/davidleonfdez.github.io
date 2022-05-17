@@ -603,10 +603,10 @@ concentrated at 0. Further suppose we are near the equilibrium point of the GAN 
 At a certain iteration of generator training, the discriminator signals the generator the direction to move towards 
 the real distribution:
 
-<!--![Figure 13: Dirac-GAN, generator distribution approaching real distribution](/assets/images/R1GPDiracGAN1.JPG)-->
+<!--![Figure 14: Dirac-GAN, generator distribution approaching real distribution](/assets/images/R1GPDiracGAN1.JPG)-->
 <figure>
 <img src="/assets/images/R1GPDiracGAN1.JPG">
-<figcaption>Figure 13: Dirac-GAN, generator distribution approaching real distribution. Image source: [10]</figcaption>
+<figcaption>Figure 14: Dirac-GAN, generator distribution approaching real distribution. Image source: [10]</figcaption>
 </figure>
 
 Then, the parameters of the generator are updated. At this moment, the generated distribution is very close to the 
@@ -614,10 +614,10 @@ real distribution. Next, we perform a discriminator step. It must learn to tell 
 As a consequence, a small variation in the input should produce very different outputs; in other words, the slope or 
 the gradient of $$D(x)$$ w.r.t. $$x$$ must be big:
 
-<!--![Figure 14: Dirac-GAN, generator distribution similar to real distribution](/assets/images/R1GPDiracGAN2.JPG)-->
+<!--![Figure 15: Dirac-GAN, generator distribution similar to real distribution](/assets/images/R1GPDiracGAN2.JPG)-->
 <figure>
 <img src="/assets/images/R1GPDiracGAN2.JPG">
-<figcaption>Figure 14: Dirac-GAN, generator distribution similar to real distribution. Image source: [10]</figcaption>
+<figcaption>Figure 15: Dirac-GAN, generator distribution similar to real distribution. Image source: [10]</figcaption>
 </figure>
 
 When we train the generator again, that big slope is backpropagated to the generator, that moves away from the real
@@ -678,7 +678,7 @@ but not vertically.
 | Dataset (real) | <img src="/assets/images/ADARealImg.JPG"> | <img src="/assets/images/ADARealImgFlipped.png"> | <img src="/assets/images/ADARealImgFlippedVertically.png"> |
 | Generator (fake) | <img src="/assets/images/ADAGeneratedImg.png"> | <img src="/assets/images/ADAGeneratedImgFlipped.png"> | <img src="/assets/images/ADAGeneratedImgFlippedVertically.png"> |
 
-<figcaption>Figure 15: example of valid augmentations according to traditional scheme</figcaption>
+<figcaption>Figure 16: example of valid augmentations according to traditional scheme</figcaption>
 <br/>
 
 What if I tell you that we don't need to be that strict and, indeed, we can leverage a diverse set of augmentations 
@@ -687,10 +687,10 @@ to delay discriminator overfitting, while preventing them from leaking to the ge
 First, we need to know how to apply augmentations that don't leak. The authors find that, surprisingly, it's possible 
 if we augment any image that the discriminator evaluates, not only the real images but also the synthetic ones.
 
-<!--![Figure 16: ADA Architecture](/assets/images/ADAArch.JPG)-->
+<!--![Figure 17: ADA Architecture](/assets/images/ADAArch.JPG)-->
 <figure>
 <img src="/assets/images/ADAArch.JPG">
-<figcaption>Figure 16: ADA Architecture. Image source: [11]</figcaption>
+<figcaption>Figure 17: ADA Architecture. Image source: [11]</figcaption>
 </figure>
 <br/>
 
@@ -699,7 +699,7 @@ if we augment any image that the discriminator evaluates, not only the real imag
 | Dataset (real) | <img src="/assets/images/ADARealImg.JPG"> | <img src="/assets/images/ADARealImgFlipped.png"> | <img src="/assets/images/ADARealImgFlippedVerticallyOk.png"> |
 | Generator (fake) | <img src="/assets/images/ADAGeneratedImg.png"> | <img src="/assets/images/ADAGeneratedImgFlippedOk.png"> | <img src="/assets/images/ADAGeneratedImgFlippedVerticallyOk.png"> |
 
-<figcaption>Figure 17: valid augmentations with ADA</figcaption>
+<figcaption>Figure 18: valid augmentations with ADA</figcaption>
 <br/>
 
 For certain transformations, a **constraint over the augmentation strength**, the probability $$p$$ that a given 
@@ -758,7 +758,7 @@ discard groups 4 and 5.
 <figure>
 <img src="/assets/images/ADAProbEffect.JPG">
 <figcaption>
-    Figure 18: (a-c) Impact of p for different augmentation categories and dataset sizes. The dashed gray line indicates baseline
+    Figure 19: (a-c) Impact of p for different augmentation categories and dataset sizes. The dashed gray line indicates baseline
     FID without augmentations. (d) Convergence curves for selected values of p using geometric augmentations with 10k 
     training images. Image source: [11]
 </figcaption>
@@ -784,10 +784,10 @@ achieved right before the **distributions cease to overlap**; after it, the FID 
 an example but the behaviour seems to be consistent across datasets, at least with the configurations used in the 
 experiments presented in the paper. 
 
-<!--![Figure 19: Overlap between distributions](/assets/images/ADADistOverlap.JPG)-->
+<!--![Figure 20: Overlap between distributions](/assets/images/ADADistOverlap.JPG)-->
 <figure>
 <img src="/assets/images/ADADistOverlap.JPG">
-<figcaption>Figure 19: overlap between distributions. Image source: [11]</figcaption>
+<figcaption>Figure 20: overlap between distributions. Image source: [11]</figcaption>
 </figure>
 
 The rise of FID can be interpreted as a clear sign of discriminator overfitting, but of course we can't calculate the 
@@ -831,10 +831,10 @@ loss.
 ADA delivers an impressive improvement for GANs trained on small to medium-sized datasets, when compared to a then
 SOTA StyleGAN 2 baseline. The boost is obviously inversely proportional to the dataset size:
 
-<!--![Figure 20: ADA results by ds size](/assets/images/ADAResults.JPG)-->
+<!--![Figure 21: ADA results by ds size](/assets/images/ADAResults.JPG)-->
 <figure>
 <img src="/assets/images/ADAResults.JPG">
-<figcaption>Figure 20: FID as a function of training set size, reported as median/min/max over 3 training runs. Image source: [11]</figcaption>
+<figcaption>Figure 21: FID as a function of training set size, reported as median/min/max over 3 training runs. Image source: [11]</figcaption>
 </figure>
 
 These results were obtained training from scratch. When using transfer learning, the improvement is moderate but
