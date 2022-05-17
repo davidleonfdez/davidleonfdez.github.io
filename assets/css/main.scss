@@ -11,3 +11,37 @@ figcaption {
   text-align: center;
 }
 
+.share-box {
+  margin: 0;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+}
+
+.share-box svg {
+  width: 20px;
+  height: 20px;
+}
+
+.share-box ul {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.share-box ul li {
+  display: inline;
+  margin-right: 5px;
+}
+
+.share-box .facebook svg {
+  fill: #1877F2;
+}
+
+.share-box .twitter svg {
+  fill: #1DA1F2;
+}
+
+.share-box .linkedin svg {
+  fill: #0A66C2;
+}
+

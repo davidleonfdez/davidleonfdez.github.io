@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "GAN convergence and stability: eight techniques explained"
-date:   2022-05-16 00:07:45 +0100
+date:   2022-05-17 16:07:45 +0100
 categories: gan
 tags: gan generative-model stability convergence ada spectral-norm r1-gp wgan wgan-gp
 usemathjax: true
