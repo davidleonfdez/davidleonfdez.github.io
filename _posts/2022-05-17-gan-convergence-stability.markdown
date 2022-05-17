@@ -264,7 +264,7 @@ where:
 - $$P_\theta$$ is the distribution that tries to approximate $$P_r$$, in our case the distribution implicitly learned by the generator.
 - $$\Pi(P_r, P_\theta)$$ is the set of all joint distributions $$\gamma$$ whose marginal distributions are $$P_r$$ and $$P_\theta$$. This ensures that every $$\gamma$$ is a transport plan to transform $$P_r$$ into $$P_\theta$$ or viceversa; with $$\gamma(x, y)$$ being the amount of mass that needs to be moved from $$x$$ ($$P_r$$) to $$y$$ ($$P_\theta$$) according to the plan $$\gamma$$.
 
-An alternative definition, that we are more interested in, is:
+Thanks to the Kantorovich-Rubinstein duality, we can get an equivalent definition easier to deal with:
 
 $$W(P_r, P_\theta) = sup_{||f||_L \le 1} \mathbb{E}_{x\sim P_r}[f(x)] - \mathbb{E}_{x\sim P_\theta}[f(x)]$$
 
@@ -427,7 +427,7 @@ weight clipping and outperforms it. It would have been interesting to see a comp
 that incorporates BN layers.
 
 
-## Two Time-scale Update Rule (TTUR)**
+## Two Time-scale Update Rule (TTUR)
 
 *[Paper](https://arxiv.org/pdf/1706.08500.pdf)*
 
